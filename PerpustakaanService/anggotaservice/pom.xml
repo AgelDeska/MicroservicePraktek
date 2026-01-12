@@ -9,7 +9,7 @@
         <version>3.3.0</version>
         <relativePath/>
     </parent>
-    <groupId>com.nauval.anggotaservice</groupId>
+    <groupId>com.agel.anggotaservice</groupId>
     <artifactId>anggotaservice</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>anggotaservice</name>
