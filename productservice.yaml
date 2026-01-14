@@ -1,0 +1,126 @@
+﻿apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"labels":{"app":"productservice"},"name":"productservice-pod","namespace":"default"},"spec":{"containers":[{"env":[{"name":"SERVER_PORT","value":"8081"},{"name":"EUREKA_CLIENT_SERVICEURL_DEFAULTZONE","value":"http://host.docker.internal:8761/eureka"}],"image":"productservice:1.0","name":"productservice-container","ports":[{"containerPort":8081}]}]}}
+  creationTimestamp: "2025-11-12T03:25:38Z"
+  labels:
+    app: productservice
+  name: productservice-pod
+  namespace: default
+  resourceVersion: "26473"
+  uid: e57e4a48-bb6e-4eeb-a33b-fd6de5812b37
+spec:
+  containers:
+  - env:
+    - name: SERVER_PORT
+      value: "8081"
+    - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+      value: http://host.docker.internal:8761/eureka
+    image: productservice:1.0
+    imagePullPolicy: IfNotPresent
+    name: productservice-container
+    ports:
+    - containerPort: 8081
+      protocol: TCP
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-sb94d
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: docker-desktop
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-sb94d
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+          - downwardAPI:
+              items:
+              - fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+                path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2025-11-17T13:27:02Z"
+    status: "True"
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2025-11-12T03:25:38Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2025-11-17T13:27:02Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2025-11-17T13:27:02Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2025-11-12T03:25:38Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: docker://812a42bffc66f2b77b7030f397db45a3809db182d15fc243b658268573384576
+    image: productservice:1.0
+    imageID: docker-pullable://productservice@sha256:bd21a9b460e3c8be3e329214ae207cfd1d31dcc8425a5042cd3384e3742bc21e
+    lastState:
+      terminated:
+        containerID: docker://cc7719ccb2749fd5d2ca081482a9acb04a2333364ba65f6d2a3b4005ade39aca
+        exitCode: 255
+        finishedAt: "2025-11-17T13:26:31Z"
+        reason: Error
+        startedAt: "2025-11-12T03:25:39Z"
+    name: productservice-container
+    ready: true
+    restartCount: 1
+    started: true
+    state:
+      running:
+        startedAt: "2025-11-17T13:26:58Z"
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-sb94d
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 192.168.65.3
+  hostIPs:
+  - ip: 192.168.65.3
+  phase: Running
+  podIP: 10.1.0.22
+  podIPs:
+  - ip: 10.1.0.22
+  qosClass: BestEffort
+  startTime: "2025-11-12T03:25:38Z"
